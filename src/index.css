@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* 
+  Inkwell Premium Color System 
+  Using custom LAB values for maximum consistency and accessibility.
+*/
+
+:root {
+  --background: lab(97.68% -0.0000298023 0.0000119209);
+  --foreground: lab(3.04863% 0 0);
+  --card: lab(100% 0 0);
+  --card-foreground: lab(3.04863% 0 0);
+  --popover: lab(100% 0 0);
+  --popover-foreground: lab(3.04863% 0 0);
+  --primary: lab(35.2195% 0.200197 -50.0121);
+  --primary-foreground: lab(97.68% -0.0000298023 0.0000119209);
+  --secondary: lab(94.2% 0 0);
+  --secondary-foreground: lab(3.04863% 0 0);
+  --muted: lab(93.04% 0.0000298023 -0.000119209);
+  --muted-foreground: lab(36.2% 0 0.00000596046);
+  --accent: lab(49.3053% -42.5124 -0.290918);
+  --accent-foreground: lab(97.68% -0.0000298023 0.0000119209);
+  --destructive: lab(45.7636% 63.3818 40.1799);
+  --destructive-foreground: lab(97.68% -0.0000298023 0.0000119209);
+  --border: lab(86.08% -0.0000298023 0);
+  --input: lab(86.08% -0.0000298023 0);
+  --ring: lab(35.2195% 0.200197 -50.0121);
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: lab(12% 0 0);
+  --foreground: lab(98% 0 0);
+  --card: lab(16% 0 0);
+  --card-foreground: lab(98% 0 0);
+  --popover: lab(14% 0 0);
+  --popover-foreground: lab(98% 0 0);
+  --primary: lab(65% 5 -65); /* More vibrant for dark contrast */
+  --primary-foreground: lab(12% 0 0);
+  --secondary: lab(22% 0 0);
+  --secondary-foreground: lab(98% 0 0);
+  --muted: lab(22% 0 0);
+  --muted-foreground: lab(70% 0 0);
+  --accent: lab(65% -45 5);
+  --accent-foreground: lab(98% 0 0);
+  --destructive: lab(50% 65 45);
+  --destructive-foreground: lab(98% 0 0);
+  --border: lab(25% 0 0);
+  --input: lab(25% 0 0);
+  --ring: lab(65% 5 -65);
+}
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  @apply bg-background text-foreground transition-colors duration-300 min-h-screen;
+}
+
+/* Smooth transitions for dark mode */
+*, *::before, *::after {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30;
+}
+
+/* Card hover animation */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Dropdown animation */
+@keyframes dropdownOpen {
+  from { opacity: 0; transform: scale(0.95) translateY(-5px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.dropdown-open {
+  animation: dropdownOpen 0.15s ease-out;
+}
+
+/* Tag colors - leveraging our new variables */
+.tag-default { @apply bg-muted text-muted-foreground; }
